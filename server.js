@@ -7,13 +7,26 @@ const logRouter = require("./routes/logRoutes.js");
 const app = express();
 app.use(express.json());
 
-mongoose.connect(
-  `mongodb+srv://nathan-123:nathan-123@cluster0-vumtw.mongodb.net/test?retryWrites=true&w=majority`,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
-);
+// dev server - mongodb local
+const server = `localhost:27017`;
+const database = `captian-log`;
+mongoose
+  .connect(`mongodb://${server}/${database}`)
+  .then(() => {
+    console.log("connected");
+  })
+  .catch(err => {
+    console.log("connection to database failed");
+  });
+
+// production - mongodb atlas
+// mongoose.connect(
+//   `mongodb+srv://nathan-123:nathan-123@cluster0-vumtw.mongodb.net/test?retryWrites=true&w=majority`,
+//   {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+//   }
+// );
 
 app.use(logRouter);
 
