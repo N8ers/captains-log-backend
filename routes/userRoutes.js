@@ -11,7 +11,7 @@ app.get("/test", (req, res) => {
 app.get("/signin", async (req, res) => {
   const [user] = await userModel.find({ username: req.body.username });
   if (user.password == req.body.password) {
-    res.status(200).send("success");
+    res.status(200).send(user);
   } else {
     res.status(404).send("incorrect creds, try again or signup!");
   }

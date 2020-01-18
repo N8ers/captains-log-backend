@@ -2,9 +2,14 @@ const express = require("express");
 const logModel = require("../models/log");
 const app = express();
 
-// get all entries
-app.get("/logs", async (req, res) => {
-  const logs = await logModel.find({});
+// get all entries by user
+app.get("/logs/:userid", async (req, res) => {
+  const logs = await logModel.find(
+    { userid: req.params.userid },
+    (err, logs) => {
+      console.log(logs);
+    }
+  );
 
   try {
     res.send(logs);
@@ -14,7 +19,7 @@ app.get("/logs", async (req, res) => {
 });
 
 // create new entry
-app.post("/log", async (req, res) => {
+app.post("/log/", async (req, res) => {
   const log = new logModel(req.body);
 
   try {

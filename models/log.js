@@ -13,7 +13,7 @@ const LogSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  author: {
+  userid: {
     type: String,
     required: true
   }
