@@ -31,7 +31,7 @@ app.delete("/log/:id", async (req, res) => {
     const log = await logModel.findByIdAndDelete(req.params.id);
 
     if (!log) res.status(404).send("log not found");
-    res.status(200).send();
+    // res.status(200).send();
   } catch (err) {
     res.status(500).send(err);
   }
@@ -40,11 +40,11 @@ app.delete("/log/:id", async (req, res) => {
 // edit entry
 app.patch("/log/:id", async (req, res) => {
   try {
+    console.log(req.body);
     await logModel.findByIdAndUpdate(req.params.id, req.body);
-    await logModel.save();
-    res.send(log);
+    res.status(200).send(console.log("success"));
   } catch (err) {
-    res.status(500).send(err);
+    res.status(500).send(err => console.log("Error: ", err));
   }
 });
 

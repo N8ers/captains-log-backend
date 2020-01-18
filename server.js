@@ -9,11 +9,18 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// mongoose.set("useNewUrlParser", true);
+// mongoose.set("useFindAndModify", false);
+
 // dev server - mongodb local
 const server = `localhost:27017`;
 const database = `captian-log`;
 mongoose
-  .connect(`mongodb://${server}/${database}`, { useUnifiedTopology: true })
+  .connect(`mongodb://${server}/${database}`, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useFindAndModify: false
+  })
   .then(() => {
     console.log("connected to database");
   })
