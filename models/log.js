@@ -12,6 +12,10 @@ const LogSchema = new mongoose.Schema({
   starDate: {
     type: Number,
     required: true
+  },
+  author: {
+    type: String,
+    required: true
   }
 });
 

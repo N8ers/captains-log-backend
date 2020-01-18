@@ -3,6 +3,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const logRouter = require("./routes/logRoutes.js");
+const userRouter = require("./routes/userRoutes");
 const cors = require("cors");
 
 const app = express();
@@ -38,6 +39,7 @@ mongoose
 // );
 
 app.use(logRouter);
+app.use(userRouter);
 
 app.listen(5000, () => {
   console.log(`server is listening on port 5000, Captian!`);
