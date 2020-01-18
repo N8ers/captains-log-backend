@@ -8,6 +8,10 @@ const LogSchema = new mongoose.Schema({
     validate(value) {
       if (value === "") throw new Error("you must input somethign to log");
     }
+  },
+  starDate: {
+    type: Number,
+    required: true
   }
 });
 

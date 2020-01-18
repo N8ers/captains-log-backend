@@ -3,17 +3,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const logRouter = require("./routes/logRoutes.js");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // dev server - mongodb local
 const server = `localhost:27017`;
 const database = `captian-log`;
 mongoose
-  .connect(`mongodb://${server}/${database}`)
+  .connect(`mongodb://${server}/${database}`, { useUnifiedTopology: true })
   .then(() => {
-    console.log("connected");
+    console.log("connected to database");
   })
   .catch(err => {
     console.log("connection to database failed");
