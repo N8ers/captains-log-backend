@@ -14,29 +14,29 @@ app.use(express.json());
 // mongoose.set("useFindAndModify", false);
 
 // dev server - mongodb local
-const server = `localhost:27017`;
-const database = `captian-log`;
-mongoose
-  .connect(`mongodb://${server}/${database}`, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useFindAndModify: false
-  })
-  .then(() => {
-    console.log("connected to database");
-  })
-  .catch(err => {
-    console.log("connection to database failed");
-  });
+// const server = `localhost:27017`;
+// const database = `captian-log`;
+// mongoose
+//   .connect(`mongodb://${server}/${database}`, {
+//     useUnifiedTopology: true,
+//     useNewUrlParser: true,
+//     useFindAndModify: false
+//   })
+//   .then(() => {
+//     console.log("connected to database");
+//   })
+//   .catch(err => {
+//     console.log("connection to database failed");
+//   });
 
 // production - mongodb atlas
-// mongoose.connect(
-//   `mongodb+srv://nathan-123:nathan-123@cluster0-vumtw.mongodb.net/test?retryWrites=true&w=majority`,
-//   {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-//   }
-// );
+mongoose.connect(
+  `mongodb+srv://nathan-123:nathan-123@cluster0-vumtw.mongodb.net/test?retryWrites=true&w=majority`,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+);
 
 app.use(logRouter);
 app.use(userRouter);
