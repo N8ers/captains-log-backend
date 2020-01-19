@@ -23,7 +23,7 @@ app.get("/signin", async (req, res) => {
 
 // sign up
 app.get("/signup", async (req, res) => {
-  let user = new userModel(req.body);
+  let user = new userModel(req.headers);
 
   try {
     await user.save();
