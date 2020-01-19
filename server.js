@@ -6,6 +6,9 @@ const logRouter = require("./routes/logRoutes.js");
 const userRouter = require("./routes/userRoutes");
 const cors = require("cors");
 
+const dbuser = process.env.dbuser;
+const dbpw = process.env.dbpw;
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -31,7 +34,7 @@ app.use(express.json());
 
 // production - mongodb atlas
 mongoose.connect(
-  `mongodb+srv://nathan-123:nathan-123@cluster0-vumtw.mongodb.net/test?retryWrites=true&w=majority`,
+  `mongodb+srv://${dbuser}:${dbpw}@cluster0-vumtw.mongodb.net/test?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
