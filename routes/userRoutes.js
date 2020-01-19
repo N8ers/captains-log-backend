@@ -9,11 +9,15 @@ app.get("/test", (req, res) => {
 
 // sign in
 app.get("/signin", async (req, res) => {
-  const [user] = await userModel.find({ username: req.body.username });
-  if (user.password == req.body.password) {
-    res.status(200).send(user);
-  } else {
-    res.status(404).send("incorrect creds, try again or signup!");
+  try {
+    const [user] = await userModel.find({ username: req.headers.username });
+    if (user.password == req.headers.password) {
+      res.status(200).send(user);
+    } else {
+      res.status(404).send("incorrect creds, try again or signup!");
+    }
+  } catch {
+    res.status(500).send("that doesn't look right");
   }
 });
 
